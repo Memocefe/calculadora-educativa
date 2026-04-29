@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cuánto necesitas para que tu hijo estudie donde quiera?</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EE;
+    --ink: #1A1814;
+    --ink-light: #6B6760;
+    --ink-lighter: #A8A4A0;
+    --accent: #C8472A;
+    --accent-light: #F5E8E4;
+    --success: #2A6B47;
+    --success-light: #E4F0EA;
+    --border: rgba(26,24,20,0.12);
+    --border-strong: rgba(26,24,20,0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--cream); }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+  .header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 40px 24px 36px;
+    text-align: center;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-lighter);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 5vw, 38px);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .header p {
+    font-size: 14px;
+    color: var(--ink-lighter);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .section {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-lighter);
+    margin-bottom: 18px;
+  }
+  .field { margin-bottom: 22px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    font-size: 13px;
+    color: var(--ink-light);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .field label span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    display: block;
+    margin-top: 2px;
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--border-strong);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--ink);
+    cursor: pointer;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--ink);
+    transition: transform 0.15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A1814' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+  select:focus { border-color: var(--ink); }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+  .metric {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .metric-label {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .metric-sub {
+    font-size: 10px;
+    color: var(--ink-lighter);
+    margin-top: 4px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .row:last-of-type { border-bottom: none; }
+  .row-label { font-size: 13px; color: var(--ink-light); }
+  .row-val { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+  .badge-bad { background: var(--accent-light); color: var(--accent); }
+  .badge-good { background: var(--success-light); color: var(--success); }
+  .insight {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.65;
+  }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .cert-box {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .cert-box-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cert-scenario {
+    font-size: 11px;
+    color: var(--ink-lighter);
+    margin-bottom: 5px;
+    line-height: 1.4;
+  }
+  .cert-result {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-light);
+    line-height: 1.4;
+  }
+  .cert-result.bad { color: var(--accent); }
+  .cert-result.good { color: var(--success); }
+  .cert-sep { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  .guarantee-note {
+    font-size: 12px;
+    color: var(--ink-lighter);
+    line-height: 1.6;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .alt-section {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+    display: none;
+  }
+  .alt-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .alt-desc {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .alt-option {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .alt-option-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .alt-option-desc {
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+  .cta-section {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .cta-section p {
+    font-size: 14px;
+    color: var(--ink-lighter);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section p strong {
+    color: #fff;
+    font-weight: 500;
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .footer-note {
+    font-size: 11px;
+    color: var(--ink-lighter);
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+  .age-tag {
+    font-size: 12px;
+    margin-left: 8px;
+  }
+  .age-tag.ok { color: var(--ink-lighter); }
+  .age-tag.no { color: var(--accent); }
+  @media (max-width: 400px) {
+    .metrics-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Monterrey New York Life</div>
+  <h1>¿Cuánto necesitas para que tu hijo estudie donde quiera?</h1>
+  <p>Descubre el costo real de la universidad y cuánto necesitas apartar hoy — antes de que sea demasiado tarde.</p>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-title">Tu situación</div>
+
+    <div class="field">
+      <label>
+        Edad actual de tu hijo/a
+        <span id="age-display">3 años <span class="age-tag ok" id="age-tag">— faltan 15 años</span></span>
+      </label>
+      <input type="range" min="0" max="12" value="3" step="1" id="age" oninput="calc()">
+    </div>
+
+    <div class="field">
+      <label>Universidad objetivo</label>
+      <select id="uni" onchange="calc()">
+        <option value="1250000">Ibero (~$1,250,000 hoy)</option>
+        <option value="1375000">Tec de Monterrey (~$1,375,000 hoy)</option>
+        <option value="1038000">Anáhuac (~$1,038,000 hoy)</option>
+        <option value="1200000">ITAM (~$1,200,000 hoy)</option>
+        <option value="700000">Universidad privada media</option>
+      </select>
+    </div>
+
+    <div class="field" id="monthly-field">
+      <label>
+        ¿Cuánto podrías apartar por mes?
+        <span id="monthly-display">$3,000 MXN</span>
+      </label>
+      <input type="range" min="500" max="15000" value="3000" step="500" id="monthly" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="alt-section" id="alt-section">
+    <div class="alt-title">Los planes educativos aplican hasta los 7 años</div>
+    <div class="alt-desc">Si tu hijo ya tiene más de 7 años, el plan educativo ya no está disponible. Pero no significa que no haya nada que hacer.</div>
+    <div class="alt-option">
+      <div class="alt-option-title">Seguro de vida para los papás</div>
+      <div class="alt-option-desc">Si algo te pasa, tu hijo tiene los recursos para estudiar sin depender de nadie ni de becas.</div>
+    </div>
+    <div class="alt-option">
+      <div class="alt-option-title">Seguro de Gastos Médicos Mayores (GMM)</div>
+      <div class="alt-option-desc">Un evento médico mayor puede consumir en semanas los ahorros de años. El GMM protege el patrimonio familiar completo.</div>
+    </div>
+  </div>
+
+  <div id="main-content">
+
+    <div class="section">
+      <div class="section-title">¿Cuánto necesitas realmente?</div>
+      <div class="metrics-grid">
+        <div class="metric">
+          <div class="metric-label">Costo estimado en <span id="target-year">2040</span></div>
+          <div class="metric-value" id="future-cost">–</div>
+          <div class="metric-sub">Inflación educativa del 8% anual</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Necesitas apartar por mes</div>
+          <div class="metric-value" id="needed-monthly">–</div>
+          <div class="metric-sub">Para cubrir el costo exacto</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <span class="row-label">Tu aportación mensual</span>
+        <span class="row-val" id="r-monthly">–</span>
+      </div>
+      <div class="row">
+        <span class="row-label">Total acumulado en <span id="r-years">15</span> años</span>
+        <span class="row-val" id="r-total">–</span>
+      </div>
+      <div class="row">
+        <span class="row-label">Diferencia con el costo futuro</span>
+        <span class="row-val" id="r-gap">–</span>
+      </div>
+      <div class="row">
+        <span class="row-label">¿Alcanza?</span>
+        <span class="badge" id="verdict">–</span>
+      </div>
+
+      <div class="insight" id="insight"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Banco / CETES vs plan educativo</div>
+      <p style="font-size: 13px; color: var(--ink-light); margin-bottom: 16px; line-height: 1.6;">La diferencia no está en el rendimiento. Está en la certeza.</p>
+
+      <div class="cert-grid">
+        <div class="cert-box">
+          <div class="cert-box-title">Banco / CETES</div>
+          <div class="cert-scenario">Si llegas a los 18 años sin ningún imprevisto:</div>
+          <div class="cert-result">Tienes lo que acumulaste — ni más ni menos</div>
+          <div class="cert-sep"></div>
+          <div class="cert-scenario">Si algo te pasa en el año 1:</div>
+          <div class="cert-result bad" id="bank-yr1">–</div>
+        </div>
+        <div class="cert-box">
+          <div class="cert-box-title">Plan educativo</div>
+          <div class="cert-scenario">Si llegas a los 18 años sin ningún imprevisto:</div>
+          <div class="cert-result">Obtienes el ahorro contratado desde un inicio</div>
+          <div class="cert-sep"></div>
+          <div class="cert-scenario">Si algo te pasa en el año 1:</div>
+          <div class="cert-result good">Tu hijo recibe el monto contratado desde un inicio</div>
+        </div>
+      </div>
+
+      <div class="guarantee-note">
+        El plan educativo no es una inversión — es una garantía. Lo que pagas no es el rendimiento: es la certeza de que pase lo que pase, el dinero estará ahí cuando tu hijo lo necesite.
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <p>
+        <strong>¿Cuánto necesitas aportar tú, específicamente?</strong>
+        La aportación exacta depende de la edad de tu hijo, la tuya y otros factores. Una consulta de 30 minutos es suficiente para tener el número real — sin costo y sin compromiso.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    Los costos universitarios son estimados con base en colegiaturas 2025 e inflación educativa histórica del 8% anual. Las cifras son referenciales — cada caso puede variar.<br><br>
+    Monterrey New York Life · Asesoría de seguros de vida y GMM
+  </div>
+
+</div>
+
+<script>
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('es-MX') + ' MXN';
+}
+
+function calc() {
+  const age = parseInt(document.getElementById('age').value);
+  const baseCost = parseInt(document.getElementById('uni').value);
+  const monthly = parseInt(document.getElementById('monthly').value);
+  const yearsLeft = 18 - age;
+  const targetYear = 2025 + yearsLeft;
+
+  document.getElementById('age-display').innerHTML = age + ' años <span class="age-tag ' + (age > 7 ? 'no' : 'ok') + '" id="age-tag">' + (age > 7 ? '— plan educativo no disponible' : '— faltan ' + yearsLeft + ' años') + '</span>';
+  document.getElementById('monthly-display').textContent = '$' + monthly.toLocaleString('es-MX') + ' MXN';
+
+  const altSection = document.getElementById('alt-section');
+  const mainContent = document.getElementById('main-content');
+  const monthlyField = document.getElementById('monthly-field');
+
+  if (age > 7) {
+    altSection.style.display = 'block';
+    mainContent.style.display = 'none';
+    monthlyField.style.display = 'none';
+    return;
+  }
+
+  altSection.style.display = 'none';
+  mainContent.style.display = 'block';
+  monthlyField.style.display = 'block';
+
+  const futureCost = baseCost * Math.pow(1.08, yearsLeft);
+  const totalAport = monthly * 12 * yearsLeft;
+  const neededMonthly = futureCost / (yearsLeft * 12);
+  const gap = futureCost - totalAport;
+  const bankYr1 = monthly * 12;
+
+  document.getElementById('target-year').textContent = targetYear;
+  document.getElementById('future-cost').textContent = fmt(futureCost);
+  document.getElementById('needed-monthly').textContent = fmt(neededMonthly);
+  document.getElementById('r-monthly').textContent = fmt(monthly);
+  document.getElementById('r-years').textContent = yearsLeft;
+  document.getElementById('r-total').textContent = fmt(totalAport);
+  document.getElementById('bank-yr1').textContent = 'Tu hijo recibe solo ' + fmt(bankYr1);
+
+  const verdict = document.getElementById('verdict');
+  const insight = document.getElementById('insight');
+  const rGap = document.getElementById('r-gap');
+
+  if (totalAport >= futureCost) {
+    rGap.textContent = 'Sin diferencia';
+    rGap.style.color = '#2A6B47';
+    verdict.textContent = 'Alcanzaría';
+    verdict.className = 'badge badge-good';
+    insight.textContent = 'Con esta aportación mensual, en ' + yearsLeft + ' años habrías acumulado lo suficiente para cubrir el costo estimado — siempre que no haya ningún imprevisto en el camino. El plan educativo garantiza ese resultado incluso si algo ocurre antes.';
+  } else {
+    rGap.textContent = '−' + fmt(gap);
+    rGap.style.color = '#C8472A';
+    verdict.textContent = 'No alcanzaría';
+    verdict.className = 'badge badge-bad';
+    const pct = Math.round((gap / futureCost) * 100);
+    insight.textContent = 'Aportando $' + monthly.toLocaleString('es-MX') + ' MXN cada mes durante ' + yearsLeft + ' años, te faltaría el ' + pct + '% del costo real. Para llegar exacto necesitarías apartar ' + fmt(neededMonthly) + ' al mes desde hoy.';
+  }
+}
+
+calc();
+</script>
+</body>
+</html>
